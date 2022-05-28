@@ -1,0 +1,21 @@
+<configuration>
+	<input>
+		<net-file value="CIT_2021_PAPER_EVSP_VC0.9.net.xml"/>
+		<additional-files value="CIT_2021_PAPER_EVSP.add.xml"/>
+	</input>
+	<output>
+    </output>
+	<BluelightDevice>
+		<device.bluelight.reactiondist value="30"/>
+		<device.bluelight.deterministic value="false"/>
+	</BluelightDevice>
+	
+	<processing>
+		<lateral-resolution value="0.15"/>
+	</processing>
+	
+	<time>
+		<begin value="0"/>
+		<end value="7500"/>
+	</time>
+</configuration>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+	<vType id="Auto" length="4.0" accel="2.9" decel="7.5" maxSpeed="20" jmDriveAfterYellowTime="3"/>
+	<vType id="ElectricBus" vClass="bus" accel="1.0" decel="1.0" lenght="12" maxSpeed="20.0" sigma="0.0" minGap="2.5" emissionClass="Energy/unknown" color="1,1,1">
+        <param key="has.battery.device" value="true"/>
+        <param key="maximumBatteryCapacity" value="140000"/>
+        <param key="maximumPower" value="1000"/>
+        <param key="vehicleMass" value="18000"/>
+        <param key="frontSurfaceArea" value="5"/>
+        <param key="airDragCoefficient" value="0.6"/>
+        <param key="internalMomentOfInertia" value="0.01"/>
+        <param key="radialDragCoefficient" value="0.5"/>
+        <param key="rollDragCoefficient" value="0.01"/>
+        <param key="constantPowerIntake" value="200"/>  <!-- Avg. (constant) power of consumers -->
+        <param key="propulsionEfficiency" value="0.9"/>
+        <param key="recuperationEfficiency" value="0.9"/>
+        <param key="stoppingTreshold" value="0.1"/>
+    </vType>
+	
+	<vType id="EmergencyVehicle" vClass="emergency" jmDriveAfterRedTime="100" guiShape="emergency">
+		<param key="has.bluelight.device" value="true"/>
+		<param key="has.ssm.device" value="true"/>
+		<param key="device.ssm.measures" value="TTC DRAC PET BR SGAP TGAP"/>
+		<param key="device.ssm.trajectories" value="true" />
+	</vType>
+
+	
+	<!-- <vType id="Bus" vClass="bus" length="8.5" accel="1.2" decel="4.0" maxSpeed="20"/> -->
+
+	<!--幹道車-->
+	
+	
+	<flow id="SBT_flow" type="Auto" beg="0" end="7200" vehsPerHour="602" color="1,1,0" from="N1E2" to="E4C4"/>
+	<flow id="SBR_flow" type="Auto" beg="0" end="7200" vehsPerHour="30" color="1,1,0" from="N1E2" to="E1C1"/>
+	<flow id="SBL_flow" type="Auto" beg="0" end="7200" vehsPerHour="79" color="1,1,0" from="N1E2" to="E3J2"/>
+
+	<flow id="NBL_flow" type="Auto" beg="0" end="7200" vehsPerHour="149" color="1,1,0" from="C4E4" to="E1C1"/>
+	<flow id="NBT_flow" type="Auto" beg="0" end="7200" vehsPerHour="756" color="1,1,0" from="C4E4" to="E2N1"/>
+	<flow id="NBR_flow" type="Auto" beg="0" end="7200" vehsPerHour="102" color="1,1,0" from="C4E4" to="E3J2"/>
+	
+	
+	<flow id="EBT_flow" type="Auto" beg="0" end="7200" vehsPerHour="1147" color="1,1,0" from="C1E1" to="E3J2"/>
+	<flow id="EBR_flow" type="Auto" beg="0" end="7200" vehsPerHour="134" color="1,1,0" from="C1E1" to="E4C4"/>
+	<flow id="EBL_flow" type="Auto" beg="0" end="7200" vehsPerHour="138" color="1,1,0" from="C1E1" to="E2N1"/> 
+	
+	
+	<flow id="WBL_flow" type="Auto" beg="0" end="7200" vehsPerHour="130" color="1,1,0" from="J2E3" to="E4C4"/>
+	<flow id="WBT_flow" type="Auto" beg="0" end="7200" vehsPerHour="1177" color="1,1,0" from="J2E3" to="E1C1"/>
+	<flow id="WBR_flow" type="Auto" beg="0" end="7200" vehsPerHour="73" color="1,1,0" from="J2E3" to="E2N1"/>
+	
+
+
+	<!-- specialVehicle -->
+	<routeDistribution id="HighLeftRoute">
+		
+		<route id="WBT" edges="J2E3 E3I1 I1E1 E1C1" probability="0.05"/>
+		<route id="WBR" edges="J2E3 E3I1 I1E2 E2N1" probability="0.05"/>
+		<route id="WBL" edges="J2E3 E3I1 I1E4 E4C4" probability="0.9"/>
+
+		<route id="EBT" edges="C1E1 E1I1 I1E3 E3J2" probability="0.05"/>
+		<route id="EBR" edges="C1E1 E1I1 I1E4 E4C4" probability="0.05"/>
+		<route id="EBL" edges="C1E1 E1I1 I1E2 E2N1" probability="0.9"/>
+		
+		<route id="SBT" edges="C4E4 E4I1 I1E2 E2N1" probability="0.05"/>
+		<route id="SBR" edges="C4E4 E4I1 I1E3 E3J2" probability="0.05"/>
+		<route id="SBL" edges="C4E4 E4I1 I1E1 E1C1" probability="0.9"/>
+		
+		<route id="NBT" edges="N1E2 E2I1 I1E4 E4C4" probability="0.05"/>
+		<route id="NBR" edges="N1E2 E2I1 I1E1 E1C1" probability="0.05"/>
+		<route id="NBL" edges="N1E2 E2I1 I1E3 E3J2" probability="0.9"/>
+		
+    </routeDistribution>
+	
+	<routeDistribution id="MediumLeftRoute">
+		
+		<route id="WBT" edges="J2E3 E3I1 I1E1 E1C1" probability="0.3"/>
+		<route id="WBR" edges="J2E3 E3I1 I1E2 E2N1" probability="0.2"/>
+		<route id="WBL" edges="J2E3 E3I1 I1E4 E4C4" probability="0.5"/>
+
+		<route id="EBT" edges="C1E1 E1I1 I1E3 E3J2" probability="0.3"/>
+		<route id="EBR" edges="C1E1 E1I1 I1E4 E4C4" probability="0.2"/>
+		<route id="EBL" edges="C1E1 E1I1 I1E2 E2N1" probability="0.5"/>
+		
+		<route id="SBT" edges="C4E4 E4I1 I1E2 E2N1" probability="0.3"/>
+		<route id="SBR" edges="C4E4 E4I1 I1E3 E3J2" probability="0.2"/>
+		<route id="SBL" edges="C4E4 E4I1 I1E1 E1C1" probability="0.5"/>
+		
+		<route id="NBT" edges="N1E2 E2I1 I1E4 E4C4" probability="0.3"/>
+		<route id="NBR" edges="N1E2 E2I1 I1E1 E1C1" probability="0.2"/>
+		<route id="NBL" edges="N1E2 E2I1 I1E3 E3J2" probability="0.5"/>
+		
+    </routeDistribution>
+	
+	<routeDistribution id="LightLeftRoute">
+		
+		<route id="WBT" edges="J2E3 E3I1 I1E1 E1C1" probability="0.7"/>
+		<route id="WBR" edges="J2E3 E3I1 I1E2 E2N1" probability="0.2"/>
+		<route id="WBL" edges="J2E3 E3I1 I1E4 E4C4" probability="0.1"/>
+
+		<route id="EBT" edges="C1E1 E1I1 I1E3 E3J2" probability="0.7"/>
+		<route id="EBR" edges="C1E1 E1I1 I1E4 E4C4" probability="0.2"/>
+		<route id="EBL" edges="C1E1 E1I1 I1E2 E2N1" probability="0.1"/>
+		
+		<route id="SBT" edges="C4E4 E4I1 I1E2 E2N1" probability="0.7"/>
+		<route id="SBR" edges="C4E4 E4I1 I1E3 E3J2" probability="0.2"/>
+		<route id="SBL" edges="C4E4 E4I1 I1E1 E1C1" probability="0.1"/>
+		
+		<route id="NBT" edges="N1E2 E2I1 I1E4 E4C4" probability="0.7"/>
+		<route id="NBR" edges="N1E2 E2I1 I1E1 E1C1" probability="0.2"/>
+		<route id="NBL" edges="N1E2 E2I1 I1E3 E3J2" probability="0.1"/>
+		
+    </routeDistribution>
+	
+
+	<vehicle id="EV_0" type="EmergencyVehicle" route="MediumLeftRoute" depart="0" color="1,0,1"/>
+	<vehicle id="EV_11" type="EmergencyVehicle" route="MediumLeftRoute" depart="80" color="1,0,1"/> 
+	<vehicle id="EV_1" type="EmergencyVehicle" route="MediumLeftRoute" depart="300" color="1,0,1"/>
+	<vehicle id="EV_2" type="EmergencyVehicle" route="MediumLeftRoute" depart="1200" color="1,0,1"/>
+	<vehicle id="EV_3" type="EmergencyVehicle" route="MediumLeftRoute" depart="2100" color="1,0,1"/>
+	<vehicle id="EV_4" type="EmergencyVehicle" route="MediumLeftRoute" depart="3000" color="1,0,1"/>
+	<vehicle id="EV_5" type="EmergencyVehicle" route="MediumLeftRoute" depart="3900" color="1,0,1"/>
+	<vehicle id="EV_6" type="EmergencyVehicle" route="MediumLeftRoute" depart="4800" color="1,0,1"/>
+	<vehicle id="EV_7" type="EmergencyVehicle" route="MediumLeftRoute" depart="5700" color="1,0,1"/>
+	<vehicle id="EV_8" type="EmergencyVehicle" route="MediumLeftRoute" depart="6600" color="1,0,1"/>
+	
+	<!--
+	<vehicle id="EV_1" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="300" color="1,0,1"/>
+	<vehicle id="EV_2" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="600" color="1,0,1"/>
+	<vehicle id="EV_3" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="900" color="1,0,1"/>
+	<vehicle id="EV_4" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="1200" color="1,0,1"/>
+	<vehicle id="EV_5" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="1500" color="1,0,1"/>
+	<vehicle id="EV_6" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="1800" color="1,0,1"/>
+	<vehicle id="EV_7" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="2100" color="1,0,1"/>
+	<vehicle id="EV_8" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="2400" color="1,0,1"/>
+	<vehicle id="EV_9" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="2700" color="1,0,1"/>
+	<vehicle id="EV_10" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="3000" color="1,0,1"/>
+	<vehicle id="EV_11" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="3300" color="1,0,1"/>
+	<vehicle id="EV_12" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="3600" color="1,0,1"/>
+	<vehicle id="EV_13" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="3900" color="1,0,1"/>
+	<vehicle id="EV_14" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="4200" color="1,0,1"/>
+	<vehicle id="EV_15" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="4500" color="1,0,1"/>
+	<vehicle id="EV_16" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="4800" color="1,0,1"/>
+	<vehicle id="EV_17" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="5100" color="1,0,1"/>
+	<vehicle id="EV_18" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="5400" color="1,0,1"/>
+	<vehicle id="EV_19" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="5700" color="1,0,1"/>
+	<vehicle id="EV_20" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="6000" color="1,0,1"/>
+	<vehicle id="EV_21" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="6300" color="1,0,1"/>
+	<vehicle id="EV_22" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="6600" color="1,0,1"/>
+	<vehicle id="EV_23" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="6900" color="1,0,1"/>
+	<vehicle id="EV_24" type="EmergencyVehicle" route="SpecialRouteDist_1" depart="7200" color="1,0,1"/>-->
+	
+
+</routes>
