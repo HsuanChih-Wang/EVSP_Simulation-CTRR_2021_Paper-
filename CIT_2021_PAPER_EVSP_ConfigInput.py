@@ -5,13 +5,12 @@ import optparse
 import random
 import argparse
 
-from wang_test_package import SignalPlanObject
-from wang_test_package import RSU
-from wang_test_package import OBU
-
-roadMapToTargetPhase = {'J2E3': 6, 'N1E2': 0, 'C1E1': 6, 'C4E4': 0}
+from package import SignalPlanObject
+from package import RSU
+from package import OBU
 from scipy import stats
 
+roadMapToTargetPhase = {'J2E3': 6, 'N1E2': 0, 'C1E1': 6, 'C4E4': 0}
 
 # we need to import some python modules from the $SUMO_HOME/tools directory
 if 'SUMO_HOME' in os.environ:
