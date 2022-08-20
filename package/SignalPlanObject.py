@@ -1,5 +1,4 @@
 import traci
-from thesis import RSUObject
 
 ring1_state = ['GGGrrrrrrrrrrrrrrrrr','yyyrrrrrrrrrrrrrrrrr','rrrrrrrrrrrrrrrrrrrr', #0,1,2
                 'rrrrrrrrrrrrrGGrrrrr','rrrrrrrrrrrrryyrrrrr','rrrrrrrrrrrrrrrrrrrr', #13,14
