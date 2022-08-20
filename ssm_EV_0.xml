@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2022-08-20 23:19:13 by Eclipse SUMO GUI Version 1.11.0
+<!-- generated on 2022-08-20 23:40:56 by Eclipse SUMO GUI Version 1.11.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -10,7 +10,7 @@
     </input>
 
     <output>
-        <tripinfo-output value="data\VC_0.9\EV_High\HighLeft\result\1\677_CIT_2021_EVSP_tripInfo.xml"/>
+        <tripinfo-output value="data\VC_0.9\EV_High\HighLeft\result\1\283_CIT_2021_EVSP_tripInfo.xml"/>
     </output>
 
     <time>
@@ -28,7 +28,7 @@
     </bluelight_device>
 
     <traci_server>
-        <remote-port value="65042"/>
+        <remote-port value="49844"/>
     </traci_server>
 
     <gui_only>
