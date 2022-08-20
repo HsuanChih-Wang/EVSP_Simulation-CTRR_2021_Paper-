@@ -174,6 +174,6 @@ if __name__ == "__main__":
     traci.vehicletype.setParameter(objID="EmergencyVehicle",
                                    param="device.ssm.file",
                                    value=os.path.join(tripInfoOutputRoute, str(randomNum) + "_" + "SSM.xml"))
-                                   #value = set a custom file name
+                                   #value => set a custom file name
 
     run(CONTROL_STRATEGY=CONTROL_STRATEGY)
