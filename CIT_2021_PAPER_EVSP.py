@@ -65,7 +65,7 @@ def run(CONTROL_STRATEGY):
                     if (vehX['nextTLSID'] != None) and (vehX['dist'] <= RSUs[rsu].detectionRange):
                         traci.vehicletype.setParameter(objID='EmergencyVehicle', param="has.bluelight.device", value="true")
                         #SpeedFactor = 1.5 -> speeding is allowed
-                        traci.vehicle.setSpeedFactor(vehID=vehX['vehID'], factor=1.5)
+                        traci.vehicle.setSpeedFactor(typeID=vehX['vehID'], factor=1.5)
 
                         #traci.vehicletype.setParameter(objID='EmergencyVehicle', param="jmDriveAfterRedTime", value="1000")
                         if ((vehX['vehID'] not in OBU_Dict)):
