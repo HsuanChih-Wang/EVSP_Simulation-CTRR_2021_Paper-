@@ -25,7 +25,7 @@ class RSU:
     def __init__(self,ID,location,detectionRange):
         self.RSU_ID = ID
         self.location = location
-        self.detectionRange = detectionRange
+        self.detectionRange = detectionRange ##DSRC or V2X detection range
         #self.CycleAccumulated = 0
         self.trafficSignalCurrentState = 0
         self.trafficSignalCurrentProgramID = 0
@@ -53,6 +53,7 @@ class RSU:
 
     ##################  Subfunctions ####################
 
+    ## private function
     def __getPhaseCountOfTrafficSignalProgram(self, programID):
         count = 0
         logics = traci.trafficlight.getAllProgramLogics(self.RSU_ID)
@@ -130,7 +131,7 @@ class RSU:
                         traci.trafficlight.setPhaseDuration(tlsID=self.RSU_ID, phaseDuration=newPhaseDuration)  # 延長
                     self.phaseCommandBuffer[currentPhaseID]['hasDone'] = True
 
-                else:
+                else: # 表示 self.phaseCommandBuffer[currentPhaseID]['switch'] == programID
                     #插入時相策略
                     traci.trafficlight.setProgram(tlsID=self.RSU_ID, programID=self.phaseCommandBuffer[currentPhaseID]['switch']) # 執行插入時相Program
                     traci.trafficlight.setPhase(tlsID=self.RSU_ID, index=2) #從第0個時相開始
@@ -160,6 +161,7 @@ class RSU:
         self.preEmptionStrategy = preemptionStrategy  ### 臨時用 不是正式變數 20210830 ### 為處理20210830問題 -> 緊急車不明原因沒有闖紅燈) ##
 
         def canPerformPreemption(self):
+            #不做優先控制的條件 滿足下列任一就不做優先: (1) 已經執行過優先控制 (2) 號誌在補償 (3) 雲端(仿)是否有開啟優先號誌功能
             if self.hasDonePreemption or self.IsUnderSignalCompensation or (not self.PREEMPTION_ACTIVATION):
                 return False
             else:

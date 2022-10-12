@@ -60,6 +60,8 @@ def run(CONTROL_STRATEGY):
                 if result:
                     vehX = RSUs[rsu].getVehicleParameters(vehID=EV)
                     #Make sure that there still has at least one intersection in front the OBU
+                    # Condition 1: Check whether the EV has passed the intersectino or not 確認是否已通過路口
+                    # Condition 2: 檢查是否有在RSU通訊範圍內
                     if (vehX['nextTLSID'] != None) and (vehX['dist'] <= RSUs[rsu].detectionRange):
                         traci.vehicletype.setParameter(objID='EmergencyVehicle', param="has.bluelight.device", value="true")
                         #SpeedFactor = 1.5 -> speeding is allowed
@@ -102,11 +104,13 @@ def run(CONTROL_STRATEGY):
                                 #traci.vehicle.remove(vehID=vehX['vehID'])
                                 #traci.vehicle.changeSublane(vehID=vehX['vehID'], latDist=0)
 
+                    # 決定優先號誌控制
                     for obu in OBU_Dict:
                         RSUs[rsu].executeSignalPreemption(obu=OBU_Dict[obu], preemptionStrategy=CONTROL_STRATEGY)
                         print("111")
-
+            #RSU更新時制秒數資料
             RSUs[rsu].updateTrafficSignalInformation()
+            #RSU 確認commnadBuffer內容
             RSUs[rsu].checkPhaseCommandBuffer()
 
         print("nowPhaseID = ", traci.trafficlight.getPhase('I1'))
