@@ -1,7 +1,7 @@
 # EVSP_Simulation-CTRR_2021_Paper
 
 * Author: Husan-Chih Wang
-* Latest Update: 2022/10/12 - Fix several bugs. Now the code can run in latest SUMO version.  
+* Latest Update: 2022/10/12 - Fix several bugs. Now the code can run in the latest SUMO version.  
 * Website: https://wangtechlab.com/
 
 ## Introduction
