@@ -69,7 +69,7 @@ def run(CONTROL_STRATEGY):
 
                         #traci.vehicletype.setParameter(objID='EmergencyVehicle', param="jmDriveAfterRedTime", value="1000")
                         if ((vehX['vehID'] not in OBU_Dict)):
-                            roadID_of_obu = traci.vehicle.getRoadID(vehID=vehX['vehID'])
+                            roadID_of_obu = traci.vehicle.getRoadID(vehID=vehXㄛ['vehID'])
                             targetPhase = roadMapToTargetPhase[roadID_of_obu]
                             # Disable the safety check rules (sm=32)
                             traci.vehicle.setSpeedMode(vehID=vehX['vehID'], sm=32)
